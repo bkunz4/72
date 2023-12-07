@@ -1,23 +1,29 @@
-<%@ page info="This is Addition Quiz Page " %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<!DOCTYPE html>
 <html>
-<title>Addition Quiz</title>
-
-
-<form action="./quizAns" >
-20 + 6 = <input type = "text" name = "one" size = 3/><br>
-27 + 6 = <input type = "text" name = "two" size = 3/><br>
-28 + 8 = <input type = "text" name = "three" size = 3 /><br>
-28 + 10 = <input type = "text" name = "four" size = 3/><br>
-28 + 7 = <input type = "text" name = "five" size = 3/><br>
-29 + 10 = <input type = "text" name = "six" size = 3/><br>
-22 + 9 = <input type = "text" name = "seven" size = 3/><br>
-29 + 12 = <input type = "text" name ="eight" size = 3/><br>
-21 + 6 = <input type = "text" name = "nine" size = 3/><br>
-27 + 12 = <input type = "text" name = "ten" size = 3/><br>
-
-<input type = "submit" value = "Submit"/> Click the browser's Refresh button to get a new quiz
-
-</form>
-
+<head>
+    <meta charset="UTF-8">
+    <title>Addition Quiz</title>
+</head>
+<body>
+    <h1>Addition Quiz</h1>
+    <form method="post" action="additionQuiz.jsp">
+        <% int num1, num2, answer, correctCount = 0, questionCount = 0;
+           Random rand = new Random();
+           for (int i = 0; i < 5; i++) {
+               num1 = rand.nextInt(100);
+               num2 = rand.nextInt(100);
+               answer = num1 + num2;
+               questionCount++;
+        %>
+        <p><%= questionCount %>. What is <%= num1 %> + <%= num2 %>?</p>
+        <input type="hidden" name="question<%= questionCount %>" value="<%= answer %>">
+        <input type="text" name="answer<%= questionCount %>" required>
+        <br>
+        <% } %>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
 </html>
